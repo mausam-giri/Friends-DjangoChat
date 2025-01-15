@@ -2,8 +2,19 @@
     <div>
         <h2 class="text-primary text-lg font-semibold">FriendsChat</h2>
     </div>
-    <div class="flex gap-4">
-        <button class="btn btn__primary">Login</button>
-        <button class="btn btn__outline">Register</button>
-    </div>
+
+    {% if user.is_authenticated  %}
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn__primary">Log Out</button>
+        </form>
+        {% comment %} <div class="flex items-center">
+            <a href="/login" class="btn btn__primary">Logout</a>
+        </div> {% endcomment %}
+    {% else %}
+        <div class="flex items-center gap-4">
+            <a href="/login" class="btn btn__primary">Login</a>
+            <a href="/register" class="btn btn__outline">Register</a>
+        </div>
+    {% endif %}
 </div>

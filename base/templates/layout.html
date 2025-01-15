@@ -35,15 +35,26 @@
           
     </script>
     <style type="text/tailwindcss">
+      @layer utilities{
+        .errorlist{
+          @apply gap-2 text-sm/6 text-red-500
+        }
+        .errorlist li{
+          @apply inline-block
+        }
+      }
         @layer components {
             .btn {
-              @apply font-medium rounded-lg px-5 py-1 border-2 border-gray rounded-md text-gray;
+              @apply font-medium rounded-lg px-5 py-1 border-2 border-gray rounded-md text-dark;
             }
             .btn__primary {
               @apply bg-primary text-light border-primary hover:bg-primary/90;
             }
             .btn__outline{
                 @apply border-dashed border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-white
+            }
+            .form__input{
+              @apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-dark outline outline-1 -outline-offset-1 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
             }
           }
       </style>
@@ -57,16 +68,20 @@
     <nav class="w-full h-[60px] bg-white border-b border-light">
         {% include "navbar.html" %}
     </nav>
-    <section class="flex min-h-[calc(100svh_-_120px)]">
+
+    <section class="flex max-h-full h-[calc(100svh_-_100px)]">
         {% include "users-sidebar.html" %}
         <main class="flex-1">
             {% block content %}
+
+                Please click to <a href="/login">login</a> or <a href="/register">signup</a>
+
             {% endblock %}
         </main>
         {% include "settings-sidebar.html" %}
     </section>
 
-    <footer class="w-full flex items-center justify-center bg-gray-100 h-[60px]">
+    <footer class="w-full flex items-center justify-center bg-dark h-[40px] text-light">
         FriendsChat 2025
     </footer>
 </body>
