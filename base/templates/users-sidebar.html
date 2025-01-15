@@ -1,20 +1,38 @@
+
 <aside class="border-r border-light shadow">
   <div class="w-[250px]">
-    <div class="pt-2 pb-2 pl-4 border-b border-light">
-      <h2 class="text-lg font-medium text-highlight">Friends</h2>
+
+    {% if user.is_authenticated %}
+      <div class="pt-2 pb-2 pl-4 border-b border-light flex items-center gap-2">
+        <button class="hover:text-secondary rounded-md flex items-center justify-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M4 18L20 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 12L20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M4 6L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <h2 class="text-lg font-medium text-highlight">Friends</h2>
+      </div>
+
+      {% comment %} https://avatar.iran.liara.run/username?username=[firstname+lastname] {% endcomment %}
+
+      <div class="mt-4 space-y-4">
+        {% for friend in users %}
+        
+          <a href="{% url 'chat-app-user' username=friend.username %}" class="pl-4 flex gap-3 items-center border-b border-light pb-2 select-none cursor-pointer">
+            <img src="https://avatar.iran.liara.run/username?username={{ friend.get_full_name }}&size=32&format=png&background=FF9800&color=ffffff" alt="user-profile-icon" class="aspect-square w-8 h-8">
+            <h3 class="capitalize"> {{friend.get_full_name}}</h3>
+          </a>
+        
+        {% endfor %}
+      </div>
+  {% else %}
+
+    <div class="pt-2 pb-2 pl-4">
+      <h2 class="text-highlight">Please login to view active users.</h2>
     </div>
 
-    {% comment %} https://avatar.iran.liara.run/username?username=[firstname+lastname] {% endcomment %}
+  {% endif %}
 
-    <div class="mt-4 space-y-4">
-      <div class="pl-4 flex gap-3 items-center border-b border-light pb-2 select-none cursor-pointer">
-        <img src="https://avatar.iran.liara.run/username?username=Mausam+Giri&size=32&format=png&background=FF9800&color=ffffff" alt="user-profile-icon" class="aspect-square w-8 h-8">
-        <h3>Mausam</h3>
-      </div>
-      <div class="pl-4 flex gap-3 items-center border-b border-light pb-2 select-none cursor-pointer">
-        <img src="https://avatar.iran.liara.run/username?username=Gautam+Giri&size=32&format=png&color=ffffff" alt="user-profile-icon" class="aspect-square w-8 h-8">
-        <h3>Gautam</h3>
-      </div>
-    </div>
   </div>
 </aside>

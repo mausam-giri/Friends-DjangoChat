@@ -7,11 +7,29 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    return render(request, 'layout.html')
+    users = None
+    if request.user.is_authenticated:
+        users = User.objects.exclude(id=request.user.id)
+    return render(request, 'layout.html', {'users': users})
 
 @login_required(login_url="login")
-def chatapp(request):
-    return render(request, 'pages/chat-app.html')
+def chatapp(request, username=None):
+    users = None
+    friend=None
+
+    if request.user.is_authenticated:
+        users = User.objects.exclude(id=request.user.id)
+            
+    try:
+        if username:
+            friend = User.objects.get(username=username)
+            friend_exists = True
+        else:
+            raise User.DoesNotExist
+    except User.DoesNotExist:
+        friend_exists = False
+
+    return render(request, 'pages/chat-app.html', {'users': users, 'friend': friend})
 
 def logout_route(request):
     logout(request)

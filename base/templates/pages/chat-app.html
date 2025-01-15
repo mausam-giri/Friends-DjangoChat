@@ -1,9 +1,52 @@
 {% extends "layout.html" %}
+{% load static %}
 
 {% block content %}
 
-<div>
-    Hello !{{user.username}}
+<div class="h-full">
+    {% if friend %}
+    
+        <div class="grid grid-rows-[auto,1fr,auto]  h-full">
+            <div>
+                <div class="px-2 py-3 shadow flex gap-4 items-center">
+                    <a href="{% url "chat-app" %}" class="cursor-pointer bg-slate-50 hover:bg-slate-100 rounded-full h-8 w-8 flex items-center justify-center">
+                        <svg height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 11H6.414l5.293-5.293-1.414-1.414L2.586 12l7.707 7.707 1.414-1.414L6.414 13H21z"/>
+                        </svg>
+                    </a>
+                   <div class="flex items-center gap-2">
+                    <img src="https://avatar.iran.liara.run/username?username={{ friend.get_full_name }}&size=32&format=png&background=FF9800&color=ffffff" alt="" class="h-8 aspect-square drop-shadow">
+                    <h2 class="capitalize font-semibold">{{friend.get_full_name}}</h2>
+                   </div>
+                </div>
+            </div>
+
+            <div class="border mb-0.5 px-2">
+            
+                {% include "components/message-area.html" %}
+            
+            </div>
+
+            <div class="relative">
+                <input type="text" class="w-full px-3 py-2.5 pb-4 pe-4 text-normal/7 border shadow focus:outline-none focus:border-t-gray-500" placeholder="Enter your message">
+                <button class="absolute right-3 top-1/2 -translate-y-1/2 w-fit btn border-none hover:text-primary !px-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 0 24 24">
+                        <path fill-rule="evenodd" d="M4.10514201,11.8070619 L2.74013818,2.2520351 L22.236068,12 L2.74013818,21.7479649 L4.10514201,12.1929381 L4.87689437,12 L4.10514201,11.8070619 Z M5.25986182,5.7479649 L5.89485799,10.1929381 L13.1231056,12 L5.89485799,13.8070619 L5.25986182,18.2520351 L17.763932,12 L5.25986182,5.7479649 Z"/>
+                      </svg>
+                </button>
+            </div>
+        </div>
+    
+    {% else %}
+        <div class="flex items-center justify-center h-full flex-col gap-4 pb-[80px]">
+            <img src="{% static 'media/friends_chat.png' %}" alt="" class="h-20 aspect-square drop-shadow">
+        
+            <div class="text-center">
+                <h2 class="text-lg text-dark font-medium">Welcome! <span class="capitalize font-semibold">{{user.get_fullname}}</span></h2>
+                <p class="text-highlight">Send and Receive message from your friends circle.</p>
+            </div>
+        </div>
+    {% endif %}
 </div>
 
 {% endblock content %}

@@ -11,7 +11,9 @@ urlpatterns = [
     path('login', views.login_route, name="login"),
     path('logout', views.logout_route, name="logout"),
     path('register', views.register_route, name="register"),
-    path("chat-app", views.chatapp, name="chat-app")
+    path("chat-app", views.chatapp, name="chat-app"),
+    path('chat-app/user/<str:username>/', views.chatapp, name='chat-app-user'),
+ 
 
 
     # re_path(r'.*', not_found_response)
