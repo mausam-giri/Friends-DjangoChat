@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        FriendsChat
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    {% comment %}
+    <script src="{% static " js/main.js" %}" defer></script> {% endcomment %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+              extend: {
+                colors: {
+                  light: "#f3f0ec",
+                  highlight: "#c2a8a7",
+                  primary: "#f3690d",
+                  secondary: "#f4ac4d",
+                  success: "#06aa5e",
+                  danger: "#bf5046",
+                  gray: "#869c8f",
+                  dark: "#422f2c",
+                },
+              },
+            },
+          };
+          
+    </script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .btn {
+              @apply font-medium rounded-lg px-5 py-1 border-2 border-gray rounded-md text-gray;
+            }
+            .btn__primary {
+              @apply bg-primary text-light border-primary hover:bg-primary/90;
+            }
+            .btn__outline{
+                @apply border-dashed border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-white
+            }
+          }
+      </style>
+   
+
+</head>
+
+<body>
+
+
+    <nav class="w-full h-[60px] bg-white border-b border-light">
+        {% include "navbar.html" %}
+    </nav>
+    <section class="flex min-h-[calc(100svh_-_120px)]">
+        {% include "users-sidebar.html" %}
+        <main class="flex-1">
+            {% block content %}
+            {% endblock %}
+        </main>
+        {% include "settings-sidebar.html" %}
+    </section>
+
+    <footer class="w-full flex items-center justify-center bg-gray-100 h-[60px]">
+        FriendsChat 2025
+    </footer>
+</body>
+
+</html>
