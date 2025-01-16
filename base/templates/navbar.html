@@ -1,20 +1,20 @@
-<div class="max-w-7xl mx-auto flex justify-between items-center h-full">
+<div class="max-w-7xl mx-auto flex justify-between items-center h-full px-4 sm:px-0">
     <div>
-        <h2 class="text-primary text-lg font-semibold">FriendsChat</h2>
+        <h2 class="text-primary text-xl font-bold">FriendsChat</h2>
     </div>
 
     {% if user.is_authenticated  %}
         <form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit" class="btn btn__primary">Log Out</button>
+            <button type="submit" class="btn text-danger text-sm/6 hover:shadow-md">Log Out</button>
         </form>
         {% comment %} <div class="flex items-center">
             <a href="/login" class="btn btn__primary">Logout</a>
         </div> {% endcomment %}
     {% else %}
         <div class="flex items-center gap-4">
-            <a href="/login" class="btn btn__primary">Login</a>
-            <a href="/register" class="btn btn__outline">Register</a>
+            <a href="/login" class="btn btn__primary text-sm/6">Login</a>
+            <a href="/register" class="btn text-primary text-sm/6">Register</a>
         </div>
     {% endif %}
 </div>

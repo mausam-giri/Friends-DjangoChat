@@ -4,22 +4,21 @@
 
 
 <div>
-    <div class="flex min-h-full flex-col justify-center px-6 py-4 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-          {% comment %} <img class="mx-auto h-10 w-auto" src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company"> {% endcomment %}
-          <h2 class="text-center text-2xl/9 font-bold tracking-tight text-gray-900">Create new account</h2>
+    <div class=" w-fit sm:mx-auto sm:w-full sm:max-w-[600px] mx-auto  flex h-full flex-col justify-center px-6 py-4 lg:px-8">
+        <div>
+          <h2 class="text-2xl/9 font-bold tracking-tight text-gray-900">Create new account</h2>
         </div>
       
-        <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-md">
+        <div class="mt-2 ">
 
           <form class="space-y-3" action="/register" method="POST">
             {% csrf_token %}
             
-            <div class="grid grid-cols-2 items-center gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-2 items-center gap-3">
               <div>
                 <label for="first_name" class="block text-sm/6 font-medium text-gray-900">Firstname</label>
-                <div class="mt-2">
-                  <input type="text" name="first_name" id="first_name" autocomplete="first_name" placeholder="Enter your firstname" required class="form__input">
+                <div >
+                  <input type="text" name="first_name" id="first_name" autocomplete="first_name" placeholder="Enter your firstname" required class="form__input ">
                   {% if form.first_name.errors %}
                     {{ form.first_name.errors }}
                   {% endif %}
@@ -27,7 +26,7 @@
               </div>
               <div>
                 <label for="last_name" class="block text-sm/6 font-medium text-gray-900">Lastname</label>
-                <div class="mt-2">
+                <div >
                   <input type="text" name="last_name" id="last_name" autocomplete="last_name" placeholder="Enter your lastname" required class="form__input">
                   {% if form.lastname.errors %}
                     {{ form.lastname.errors }}
@@ -38,7 +37,7 @@
           
             <div>
               <label for="username" class="block text-sm/6 font-medium text-gray-900">Username</label>
-              <div class="mt-2">
+              <div >
                 <input type="text" name="username" id="username" autocomplete="username" placeholder="Enter your username" required class="form__input">
                 {% if form.username.errors %}
                   {{ form.username.errors }}
@@ -46,10 +45,10 @@
               </div>
             </div>
           
-            <div class="grid grid-cols-2 gap-3">
+            <div class="grid grid-cols-2 sm:grid-cols-2 gap-3">
               <div>
                 <label for="password1" class="block text-sm/6 font-medium text-gray-900">Password</label>
-                <div class="mt-2">
+                <div >
                   <input type="password" name="password1" id="password1" autocomplete="current-password" placeholder="Enter password" required class="form__input">
                   
                 </div>
@@ -57,7 +56,7 @@
             
               <div>
                 <label for="password2" class="block text-sm/6 font-medium text-gray-900">Confirm Password</label>
-                <div class="mt-2">
+                <div >
                   <input type="password" name="password2" id="password2" autocomplete="current-password" placeholder="Enter password" required class="form__input">
                   
                 </div>
@@ -68,8 +67,8 @@
                 {{ form.password2.errors }}
               {% endif %}
             </div>
-            <div>
-              <button type="submit" class="btn btn__primary w-full text-sm/6">Sign in</button>
+            <div class="!mt-4">
+              <button type="submit" class="btn btn__primary py-2 shadow text-base w-full text-sm/6">Sign in</button>
             </div>
           </form>
         </div>

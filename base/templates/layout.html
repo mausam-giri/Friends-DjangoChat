@@ -45,16 +45,16 @@
       }
         @layer components {
             .btn {
-              @apply font-medium rounded-lg px-5 py-1 border-2 border-gray-100 rounded-md text-dark;
+              @apply font-medium rounded-lg px-5 py-1 border shadow border-gray-100 rounded-md text-dark;
             }
             .btn__primary {
-              @apply bg-primary text-light border-primary hover:bg-primary/90;
+              @apply border-primary bg-primary text-light hover:bg-primary/90;
             }
             .btn__outline{
                 @apply border-dashed border-primary text-primary transition-all duration-300 hover:bg-primary hover:text-white
             }
             .form__input{
-              @apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-dark outline outline-1 -outline-offset-1 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
+              @apply block w-full rounded-lg border bg-white px-3 py-2 text-base text-dark border border-gray-100 shadow focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
             }
             .message-sent{
               @apply !rounded-tr-none ml-auto bg-green-300
@@ -88,7 +88,7 @@
     </section>
 
     <footer class="w-full flex items-center justify-center bg-dark h-[40px] text-light">
-        FriendsChat 2025
+        FriendsChat 2025 : Mausam Giri
     </footer>
 
     {% block scripts %}

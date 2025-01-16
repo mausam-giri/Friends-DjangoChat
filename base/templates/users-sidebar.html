@@ -1,17 +1,16 @@
 
-<aside class="border-r border-light shadow">
-  <div class="w-[250px]">
+<aside id="sidebar-user-list" class="transition-all duration-300 ease-in border-r border-light shadow w-[65px] md:w-[250px] {% if user.is_authenticated %} block {% else %} hidden sm:block {% endif %}">
 
     {% if user.is_authenticated %}
-      <div class="pt-2 pb-2 pl-4 border-b border-light flex items-center gap-2">
-        <button class="hover:text-secondary rounded-md flex items-center justify-center">
+      <div class="pt-2 pb-2 pl-5 border-b border-light flex items-center gap-4  ">
+        <button type="button" onclick="toggleSidebar()" class="hover:text-secondary rounded-md flex items-center justify-center h-7">
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
             <path d="M4 18L20 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M4 12L20 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             <path d="M4 6L20 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
             </svg>
         </button>
-        <h2 class="text-lg font-medium text-highlight">Friends</h2>
+        <h2 id="sidebar-user-heading" class="flex-1 text-lg  text-highlight overflow-hidden hidden sm:block">Friends</h2>
       </div>
 
       {% comment %} https://avatar.iran.liara.run/username?username=[firstname+lastname] {% endcomment %}
@@ -20,8 +19,8 @@
         {% for friend in users %}
         
           <a href="{% url 'chat-app-user' username=friend.username %}" class="pl-4 flex gap-3 items-center border-b border-light pb-2 select-none cursor-pointer">
-            <img src="https://avatar.iran.liara.run/username?username={{ friend.get_full_name }}&size=32&format=png&background=FF9800&color=ffffff" alt="user-profile-icon" class="aspect-square w-8 h-8">
-            <h3 class="capitalize"> {{friend.get_full_name}}</h3>
+            <img src="https://avatar.iran.liara.run/username?username={{ friend.get_full_name }}&size=32&format=png&background=FF9800&color=ffffff" alt="user-profile-icon" class="aspect-square w-8 h-8 drop-shadow bg-gray-200 rounded-full">
+            <h3 id="chat-friend-name" class="capitalize transition-all duration-300 ease-in whitespace-nowrap overflow-hidden hidden sm:block"> {{friend.get_full_name}}</h3>
           </a>
         
         {% endfor %}
@@ -34,5 +33,40 @@
 
   {% endif %}
 
-  </div>
 </aside>
+
+{% block scripts %}
+<script>
+  const sidebar = document.querySelector("#sidebar-user-list");
+  const chatFriendName = document.querySelector("#chat-friend-name");
+  const sidebarHeader = document.querySelector("#sidebar-user-heading");
+
+  document.addEventListener('DOMContentLoaded', handleResize);
+
+  window.addEventListener('resize', handleResize);
+
+  function handleResize() {
+    if (window.innerWidth > 600) {
+      setSidebarState(250);
+    } else {
+      setSidebarState(65);
+    }
+  }
+
+  function toggleSidebar() {
+    const newWidth = sidebar.offsetWidth === 250 ? 65 : 250;
+    setSidebarState(newWidth);
+  }
+
+  function setSidebarState(width) {
+    sidebar.style.width = `${width}px`;
+    const displayValue = width === 250 ? "block" : "none";
+    if(sidebarHeader)
+      sidebarHeader.style.display = displayValue;
+      
+    if(chatFriendName)
+      chatFriendName.style.display = displayValue;
+  }
+</script>
+
+{% endblock scripts %}
