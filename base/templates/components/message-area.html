@@ -1,1 +1,24 @@
-hello
+{% load static %}
+
+<div id="message-container" class="flex flex-col h-full items-end">
+    {% comment %} {% include "components/messages.html" %} {% endcomment %}
+</div>
+
+{% block scripts %}
+
+    <script src="{% static "js/main.js" %}" defer></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const friendUsername = document.getElementById('friend-username').value;
+
+            const response = await fetch(`/chat-app/messages/?friend=${friendUsername}`);
+            const data = await response.json();
+        
+            if (data.status === "success") {
+                displayMessages(data.messages);
+            }
+        });
+    </script>
+
+{% endblock scripts %}

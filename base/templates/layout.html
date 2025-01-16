@@ -56,6 +56,12 @@
             .form__input{
               @apply block w-full rounded-md bg-white px-3 py-1.5 text-base text-dark outline outline-1 -outline-offset-1 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6
             }
+            .message-sent{
+              @apply !rounded-tr-none ml-auto bg-green-300
+            }
+            .message-received{
+              @apply !rounded-tl-none mr-auto bg-white border
+            }
           }
       </style>
    
@@ -84,6 +90,9 @@
     <footer class="w-full flex items-center justify-center bg-dark h-[40px] text-light">
         FriendsChat 2025
     </footer>
+
+    {% block scripts %}
+    {% endblock %}
 </body>
 
 </html>

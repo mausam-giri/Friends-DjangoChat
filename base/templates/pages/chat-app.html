@@ -21,18 +21,20 @@
                 </div>
             </div>
 
-            <div class="border mb-0.5 px-2">
+            <div class="border mb-0.5 px-2 ">
             
                 {% include "components/message-area.html" %}
             
             </div>
 
             <div class="relative">
-                <input type="text" class="w-full px-3 py-2.5 pb-4 pe-4 text-normal/7 border shadow focus:outline-none focus:border-t-gray-500" placeholder="Enter your message">
-                <button class="absolute right-3 top-1/2 -translate-y-1/2 w-fit btn border-none hover:text-primary !px-2">
+                <input type="text" class="w-full px-3 py-2.5 pb-4 pe-4 text-normal/7 border shadow focus:outline-none focus:border-t-gray-500" placeholder="Enter your message" name="chat-message-input" id="chat-message-input"/>
+
+                <input type="hidden" id="friend-username" value="{{ friend.username }}" />
+                <button type="button" onclick="sendMessage()" class="absolute right-3 top-1/2 -translate-y-1/2 w-fit btn border-none hover:text-primary !px-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 0 24 24">
                         <path fill-rule="evenodd" d="M4.10514201,11.8070619 L2.74013818,2.2520351 L22.236068,12 L2.74013818,21.7479649 L4.10514201,12.1929381 L4.87689437,12 L4.10514201,11.8070619 Z M5.25986182,5.7479649 L5.89485799,10.1929381 L13.1231056,12 L5.89485799,13.8070619 L5.25986182,18.2520351 L17.763932,12 L5.25986182,5.7479649 Z"/>
-                      </svg>
+                    </svg>
                 </button>
             </div>
         </div>

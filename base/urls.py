@@ -13,6 +13,7 @@ urlpatterns = [
     path('register', views.register_route, name="register"),
     path("chat-app", views.chatapp, name="chat-app"),
     path('chat-app/user/<str:username>/', views.chatapp, name='chat-app-user'),
+    path("chat-app/messages/", views.chat_messages, name="chat-messages"),
  
 
 
